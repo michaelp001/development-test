@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="mb-4">Customers</h1>
+<form action="/customers" method="post" class="mb-4">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+    </div>
+    <div class="form-group">
+        <label for="handphone">Handphone</label>
+        <input type="text" class="form-control" id="handphone" name="handphone" placeholder="Handphone" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Customer</button>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Handphone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in customers %}
+        <tr>
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.handphone }}</td>
+            <td>
+                <a href="/customers/edit/{{ customer._id }}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/customers/delete/{{ customer._id }}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="mb-4">Sales</h1>
+<form action="/sales" method="post" class="mb-4">
+    <div class="form-group">
+        <label for="customer_id">Customer</label>
+        <select class="form-control" id="customer_id" name="customer_id" required>
+            <option value="">Select Customer</option>
+            {% for customer in customers %}
+            <option value="{{ customer._id }}">{{ customer.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="product_id">Product</label>
+        <select class="form-control" id="product_id" name="product_id" required>
+            <option value="">Select Product</option>
+            {% for product in products %}
+            <option value="{{ product._id }}">{{ product.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="qty">Quantity</label>
+        <input type="number" class="form-control" id="qty" name="qty" placeholder="Quantity" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Sale</button>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sale in sales %}
+        <tr>
+            <td>{{ sale.customer_name }}</td>
+            <td>{{ sale.product_name }}</td>
+            <td>{{ sale.qty }}</td>
+            <td>${{ sale.total_price }}</td>
+            <td>
+                <a href="/sales/edit/{{ sale._id }}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/sales/delete/{{ sale._id }}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

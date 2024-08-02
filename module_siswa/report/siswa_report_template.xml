@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="siswa_report_template">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <h2>Siswa Report</h2>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Kelas</th>
+                            <th>Guru</th>
+                            <th>Mata Pelajaran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="siswa">
+                            <tr>
+                                <td><t t-esc="siswa.name"/></td>
+                                <td><t t-esc="siswa.kelas_id.name"/></td>
+                                <td><t t-esc="siswa.guru_id.name"/></td>
+                                <td><t t-esc="siswa.mata_pelajaran_id.name"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <record id="action_report_siswa" model="ir.actions.report">
+        <field name="name">Siswa Report</field>
+        <field name="model">siswa.siswa</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">siswa_report_template</field>
+        <field name="report_file">siswa_report_template</field>
+        <field name="print_report_name">Siswa Report</field>
+    </record>
+</odoo>
