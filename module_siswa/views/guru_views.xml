@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_form_guru" model="ir.ui.view">
+        <field name="name">guru.form</field>
+        <field name="model">siswa.guru</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="mapel_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_guru" model="ir.ui.view">
+        <field name="name">guru.tree</field>
+        <field name="model">siswa.guru</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="mapel_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_guru" model="ir.actions.act_window">
+        <field name="name">Guru</field>
+        <field name="res_model">siswa.guru</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_guru" name="Guru" parent="menu_siswa_root"/>
+    <menuitem id="menu_guru_guru" name="Guru" parent="menu_guru" action="action_guru"/>
+
+
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_form_siswa" model="ir.ui.view">
+        <field name="name">siswa.form</field>
+        <field name="model">siswa.siswa</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="date_of_birth"/>
+                        <field name="kelas_id"/>
+                        <field name="guru_id"/>
+                        <field name="mata_pelajaran_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_siswa" model="ir.ui.view">
+        <field name="name">siswa.tree</field>
+        <field name="model">siswa.siswa</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="kelas_id"/>
+                <field name="guru_id"/>
+                <field name="mata_pelajaran_id"/>
+            </tree>
+        </field>
+    </record>
+    
+    
+    <record id="action_siswa" model="ir.actions.act_window">
+        <field name="name">Siswa</field>
+        <field name="res_model">siswa.siswa</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_siswa_root" name="Sekolah"/>
+    <menuitem id="menu_siswa" name="Siswa" parent="module_siswa.menu_siswa_root"/>
+    <menuitem id="menu_siswa_siswa" name="Siswa" parent="module_siswa.menu_siswa" action="action_siswa"/>
+
+
+</odoo>
